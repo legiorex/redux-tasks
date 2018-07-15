@@ -6,10 +6,10 @@ import cx from 'classnames';
 import Styles from './styles.m.css';
 
 // Components
-import Checkbox from 'theme/assets/Checkbox';
-import Remove from 'theme/assets/Remove';
-import Edit from 'theme/assets/Edit';
-import Star from 'theme/assets/Star';
+import Checkbox from '../../theme/assets/Checkbox';
+import Remove from '../../theme/assets/Remove';
+import Edit from '../../theme/assets/Edit';
+import Star from '../../theme/assets/Star';
 
 export default class Task extends PureComponent {
     render () {
@@ -24,7 +24,7 @@ export default class Task extends PureComponent {
                 <div className = { Styles.content }>
                     <Checkbox
                         inlineBlock
-                        className = { Styles.complete }
+                        className = { Styles.toggleTaskCompletedState }
                         color1 = '#3B8EF3'
                         color2 = '#FFF'
                     />
@@ -34,20 +34,20 @@ export default class Task extends PureComponent {
                     <Star
                         checked
                         inlineBlock
-                        className = { Styles.setPriority }
+                        className = { Styles.toggleTaskFavoriteState }
                         color1 = '#3B8EF3'
                         color2 = '#000'
                     />
                     <Edit
                         inlineBlock
                         checked = { false }
-                        className = { Styles.edit }
+                        className = { Styles.updateTaskMessageOnClick }
                         color1 = '#3B8EF3'
                         color2 = '#000'
                     />
                     <Remove
                         inlineBlock
-                        className = { Styles.remove }
+                        className = { Styles.removeTask }
                         color1 = '#3B8EF3'
                         color2 = '#000'
                     />

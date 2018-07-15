@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 
 // Instruments
 import Styles from './styles.m.css';
-import Checkbox from 'theme/assets/Checkbox';
 import { tasks } from './tasks';
 
 // Components
-import Task from 'components/Task';
+import Task from '../Task';
+import Checkbox from '../../theme/assets/Checkbox';
 
 export default class Scheduler extends Component {
     render () {
