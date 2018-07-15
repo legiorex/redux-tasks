@@ -175,7 +175,7 @@
 
 Пример использования:
 
-![svg-example](./static/assets/svg-example.png)
+![withSvg-example](./static/assets/withSvg-example.png)
 
 ---
 
