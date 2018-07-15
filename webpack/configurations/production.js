@@ -2,7 +2,12 @@
 import { generateCommonConfiguration } from './common';
 
 // Webpack modules
-import { loadProductionCss, setupBuildAnalysis, cleanBuildDirectory } from '../modules';
+import {
+    loadProductionCss,
+    setupBuildAnalysis,
+    setupFavicon,
+    cleanBuildDirectory
+} from '../modules';
 
 // Instruments
 import merge from 'webpack-merge';
@@ -14,6 +19,7 @@ export const generateProductionConfiguration = () =>
 
         // Loaders
         loadProductionCss(),
+        setupFavicon(),
 
         // Plugins
         cleanBuildDirectory(),
@@ -23,6 +29,9 @@ export const generateProductionConfiguration = () =>
             output: {
                 filename: 'js/[name].[chunkhash:5].js',
             },
-            devtool: 'source-map',
-        }
+            devtool:      'source-map',
+            optimization: {
+                minimize: false,
+            },
+        },
     );
