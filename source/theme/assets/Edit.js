@@ -1,8 +1,8 @@
 // Core
 import React, { Component } from 'react';
 
-// Imstruments
-import { withSvg } from 'instruments/withSvg';
+// Instruments
+import { withSvg } from '../../instruments/withSvg';
 
 class Edit extends Component {
     render () {
