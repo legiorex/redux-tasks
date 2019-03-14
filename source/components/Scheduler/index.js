@@ -10,31 +10,30 @@ import Styles from './styles.m.css';
 // Components
 import Task from '../Task';
 import Checkbox from '../../theme/assets/Checkbox';
+import Spinner from '../Spinner'
 
 // Actions
-import { fetchTasksAsync, createTaskAsync  } from '../../bus/tasks/actions'
+import { tasksActions  } from '../../bus/tasks/actions'
+import { uiActions } from '../../bus/ui/actions';
 
 const mapStateToProps = (state) => {
 
     return {
         tasks: state.tasks,
+        valueInputTask: state.ui.get('valueInputTask')
     };
 };
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        actions: bindActionCreators({ fetchTasksAsync, createTaskAsync }, dispatch),
+        actions: bindActionCreators({ ...tasksActions, ...uiActions }, dispatch),
     };
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Scheduler extends Component {
 
-    state = { 
-        newTaskMessage: "",
-        
-    };
-
+   
     componentDidMount() {
         const { actions } = this.props;        
         actions.fetchTasksAsync()
@@ -42,27 +41,25 @@ export default class Scheduler extends Component {
 
     _createTaskAsync = (event) => {
         event.preventDefault();
-        const { newTaskMessage } = this.state;
+        
+        const { valueInputTask, actions } = this.props;
+        
 
-        if (!newTaskMessage) {
+        if (!valueInputTask) {
             return null;
         }
-        this.props.actions.createTaskAsync(newTaskMessage)
-        
-        // console.log(newTaskMessage)
-        
+        actions.createTaskAsync(valueInputTask);
+        actions.clearTask();
     }
     _updateNewTaskMessage = (event) => {
-        this.setState({ newTaskMessage: event.target.value });
+        
+        const { inputTask } = this.props.actions;
+        inputTask(event.target.value)
     };
 
 
     render () {
-
-        const {newTaskMessage} = this.state;
-        const { tasks } = this.props;
-        // console.log('список задач',tasksNew)
-        
+        const { valueInputTask, tasks } = this.props;
 
         const todoList = tasks.map((task) => {
             return (<Task
@@ -77,6 +74,7 @@ export default class Scheduler extends Component {
 
         return (
             <section className = { Styles.scheduler }>
+                <Spinner/>
                 <main>
                     <header>
                         <h1>Планировщик задач</h1>
@@ -89,7 +87,7 @@ export default class Scheduler extends Component {
                                 maxLength = { 50 }
                                 placeholder = 'Описание моей новой задачи'
                                 type = 'text'
-                                value={newTaskMessage}
+                                value={valueInputTask}
                                 onChange={this._updateNewTaskMessage}
                                 
                             />

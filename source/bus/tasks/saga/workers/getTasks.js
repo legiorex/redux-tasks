@@ -5,20 +5,20 @@ import { put, apply } from 'redux-saga/effects';
 import { api } from '../../../../REST';
 import { tasksActions } from '../../actions';
 import { uiActions } from '../../../ui/actions';
-export function* createTask ({ payload: newTaskMessage }) {
+export function* getTasks () {
     try {
         yield put(uiActions.startFetching());
-
-        const response = yield apply(api, api.tasks.createTask, [newTaskMessage]);
-        const { data: task, message } = yield apply(response, response.json);
+        
+        const response = yield apply(api, api.tasks.fetch);
+        const { data: tasks, message } = yield apply(response, response.json);
 
         if (response.status !== 200) {
             throw new Error(message);
         }
-        yield put(tasksActions.createTask(task));
+        yield put(tasksActions.fillTasks(tasks));
 
     } catch (error) {
-        yield put(uiActions.emitError(error, 'createTask worker'));
+        yield put(uiActions.emitError(error, 'getTasks worker'));
     } finally {
         yield put(uiActions.stopFetching());
     }
