@@ -12,6 +12,12 @@ import Edit from '../../theme/assets/Edit';
 import Star from '../../theme/assets/Star';
 
 export default class Task extends PureComponent {
+
+    _removeTask = () => {
+        const { id, actions } =this.props;
+
+        actions.removeTaskAsync(id);
+    }
     render () {
         const { message, completed } = this.props;
 
@@ -48,6 +54,7 @@ export default class Task extends PureComponent {
                     <Remove
                         inlineBlock
                         className = { Styles.removeTask }
+                        onClick = { this._removeTask }
                         color1 = '#3B8EF3'
                         color2 = '#000'
                     />

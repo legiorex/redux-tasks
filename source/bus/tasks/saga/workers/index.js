@@ -1,2 +1,3 @@
 export { createTask } from './createTask';
-export { getTasks } from './getTasks';
+export { fetchTasks } from './fetchTasks';
+export { removeTask } from './removeTask';

@@ -14,6 +14,12 @@ export const tasksReducer = (state = initialState, action) => {
 
         case types.CREATE_TASK:
             return state.unshift(fromJS(action.payload));
+
+        case types.REMOVE_TASK:
+            return state.filter((task) => {
+                return task.get("id") !== action.payload;
+            });
+
         default:
             return state;
     }

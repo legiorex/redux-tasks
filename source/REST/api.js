@@ -22,5 +22,14 @@ export const api = {
                 body: JSON.stringify({ message: newTask }),
             });
         },
+
+        removeTask (taskId) {
+            return fetch(`${MAIN_URL}/${taskId}`, {
+                method:  "DELETE",
+                headers: {
+                    Authorization: TOKEN,
+                },
+            });
+        },
     },
 };

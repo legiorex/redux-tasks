@@ -59,10 +59,11 @@ export default class Scheduler extends Component {
 
 
     render () {
-        const { valueInputTask, tasks } = this.props;
+        const { valueInputTask, tasks, actions } = this.props;
 
-        const todoList = tasks.map((task) => {
+        const todoList = tasks.map((task) => {            
             return (<Task
+                actions = {actions}
                 completed = { task.get('completed') }
                 favorite = { task.get('favorite') }
                 id = { task.get('id') }
