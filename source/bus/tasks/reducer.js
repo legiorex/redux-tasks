@@ -4,6 +4,9 @@ import { fromJS, List } from 'immutable';
 // Instruments
 import { types } from "./types";
 
+// Actions
+import { tasksActions } from './actions';
+
 const initialState = List();
 
 export const tasksReducer = (state = initialState, action) => {
@@ -19,6 +22,13 @@ export const tasksReducer = (state = initialState, action) => {
             return state.filter((task) => {
                 return task.get("id") !== action.payload;
             });
+        case types.TOGGLE_FAVORITE_TASK:
+
+            console.log('изначальный', action.payload);
+
+            const newUpd = action.payload.set('favorite', true);
+
+            tasksActions.updateTaskAsync(newUpd);
 
         default:
             return state;

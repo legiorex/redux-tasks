@@ -1,8 +1,7 @@
 // Types
 import { types } from "./types";
 
-// Instruments
-import { api } from '../../REST';
+
 
 export const tasksActions = {
 
@@ -26,6 +25,12 @@ export const tasksActions = {
             payload: task,
         };
     },
+    toggleFavoriteTask: (task) => {
+        return {
+            type:    types.TOGGLE_FAVORITE_TASK,
+            payload: task,
+        };
+    },
 
     // Async
 
@@ -45,6 +50,12 @@ export const tasksActions = {
         return {
             type:    types.REMOVE_TASK_ASYNC,
             payload: taskId,
+        };
+    },
+    updateTaskAsync: (updatedTask) => {
+        return {
+            type:    types.UPDATE_TASK_ASYNC,
+            payload: updatedTask,
         };
     },
 

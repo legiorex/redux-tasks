@@ -31,5 +31,16 @@ export const api = {
                 },
             });
         },
+
+        updateTask (updatedTask) {
+            return fetch(MAIN_URL, {
+                method:  "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization:  TOKEN,
+                },
+                body: JSON.stringify(updatedTask),
+            });
+        },
     },
 };

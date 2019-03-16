@@ -18,8 +18,15 @@ export default class Task extends PureComponent {
 
         actions.removeTaskAsync(id);
     }
+
+    _toggleFavoriteTask = () => {
+        const { task, actions } = this.props;
+
+        actions.toggleFavoriteTask(task);
+    }
+
     render () {
-        const { message, completed } = this.props;
+        const { message, favorite, completed } = this.props;
 
         const styles = cx(Styles.task, {
             [Styles.completed]: completed,
@@ -38,11 +45,12 @@ export default class Task extends PureComponent {
                 </div>
                 <div className = { Styles.actions }>
                     <Star
-                        checked
                         inlineBlock
+                        checked = { favorite }
                         className = { Styles.toggleTaskFavoriteState }
                         color1 = '#3B8EF3'
                         color2 = '#000'
+                        onClick = { this._toggleFavoriteTask }
                     />
                     <Edit
                         inlineBlock

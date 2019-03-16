@@ -63,6 +63,7 @@ export default class Scheduler extends Component {
 
         const todoList = tasks.map((task) => {            
             return (<Task
+                task = {task}
                 actions = {actions}
                 completed = { task.get('completed') }
                 favorite = { task.get('favorite') }
