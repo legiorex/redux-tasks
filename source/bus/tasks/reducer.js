@@ -25,11 +25,11 @@ export const tasksReducer = (state = initialState, action) => {
         case types.TOGGLE_FAVORITE_TASK:
 
             console.log('изначальный', action.payload);
+            console.log(action)
+            // const newUpd = action.payload.set('favorite', true);
 
-            const newUpd = action.payload.set('favorite', true);
-
-            tasksActions.updateTaskAsync(newUpd);
-
+            // , action.updateTaskAsync: tasksActions.updateTaskAsync(newUpd)
+            // return { ...state };
         default:
             return state;
     }

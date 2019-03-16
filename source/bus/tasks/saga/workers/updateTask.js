@@ -10,7 +10,6 @@ export function* updateTask ({ payload: updatedTask }) {
     try {
         yield put(uiActions.startFetching());
 
-        
         // const response = yield apply(api, api.tasks.updateTask, [updatedTask]);
         // const { data: task, message } = yield apply(response, response.json);
 

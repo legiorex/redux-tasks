@@ -23,6 +23,7 @@ export default class Task extends PureComponent {
         const { task, actions } = this.props;
 
         actions.toggleFavoriteTask(task);
+        // actions.updateTaskAsync(task);
     }
 
     render () {
