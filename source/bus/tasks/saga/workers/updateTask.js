@@ -17,7 +17,7 @@ export function* updateTask ({ payload: updatedTask }) {
         // if (response.status !== 200) {
         //     throw new Error(message);
         // }
-        // yield put(tasksActions.createTask(task));
+        
         yield put(tasksActions.fillTasks(tasks));
     } catch (error) {
         yield put(uiActions.emitError(error, 'updateTask worker'));

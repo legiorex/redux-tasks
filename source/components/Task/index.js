@@ -25,14 +25,11 @@ export default class Task extends PureComponent {
             return item === task;
         });
 
-        const upd = tasks.update(indexCurrentTask, (item) => {
-            return item.set('favorite', true);
+        const updatedTasks = tasks.update(indexCurrentTask, (item) => {
+            return item.set('favorite', !item.get('favorite'));
         });
-        // const test = actions.toggleFavoriteTask(task);
-        
-        // actions.toggleFavoriteTask(task);
-        // console.log('upd', upd);
-        actions.updateTaskAsync(upd);
+
+        actions.updateTaskAsync(updatedTasks);
     }
 
     render () {
