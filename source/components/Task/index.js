@@ -20,10 +20,19 @@ export default class Task extends PureComponent {
     }
 
     _toggleFavoriteTask = () => {
-        const { task, actions } = this.props;
+        const { tasks, task, actions } = this.props;
+        const indexCurrentTask = tasks.findIndex((item) => {
+            return item === task;
+        });
 
-        actions.toggleFavoriteTask(task);
-        // actions.updateTaskAsync(task);
+        const upd = tasks.update(indexCurrentTask, (item) => {
+            return item.set('favorite', true);
+        });
+        // const test = actions.toggleFavoriteTask(task);
+        
+        // actions.toggleFavoriteTask(task);
+        // console.log('upd', upd);
+        actions.updateTaskAsync(upd);
     }
 
     render () {

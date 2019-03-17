@@ -10,14 +10,15 @@ export function* updateTask ({ payload: updatedTask }) {
     try {
         yield put(uiActions.startFetching());
 
-        // const response = yield apply(api, api.tasks.updateTask, [updatedTask]);
-        // const { data: task, message } = yield apply(response, response.json);
+        const response = yield apply(api, api.tasks.updateTask, [updatedTask]);
+        const { data: tasks, message } = yield apply(response, response.json);
+        console.log(tasks)
 
         // if (response.status !== 200) {
         //     throw new Error(message);
         // }
         // yield put(tasksActions.createTask(task));
-
+        yield put(tasksActions.fillTasks(tasks));
     } catch (error) {
         yield put(uiActions.emitError(error, 'updateTask worker'));
     } finally {
