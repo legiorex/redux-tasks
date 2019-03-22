@@ -79,10 +79,10 @@ const decorateSvg = (
             return (
                 <div
                     className = { className }
-                    style = { wrapperStyle }
                     onClick = { onClickAction }
                     onMouseEnter = { disabled ? null : this._handleMouseEnter }
-                    onMouseLeave = { disabled ? null : this._handleMouseLeave }>
+                    onMouseLeave = { disabled ? null : this._handleMouseLeave }
+                    style = { wrapperStyle }>
                     <svg
                         style = { svgStyle }
                         version = '1.1'

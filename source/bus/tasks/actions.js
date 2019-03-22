@@ -1,8 +1,6 @@
 // Types
 import { types } from "./types";
 
-
-
 export const tasksActions = {
 
     // Sync
@@ -29,6 +27,13 @@ export const tasksActions = {
         return {
             type:    types.TOGGLE_FAVORITE_TASK,
             payload: task,
+        };
+    },
+
+    editMessageTask: (message) => {
+        return {
+            type:    types.EDIT_MESSAGE_TASK,
+            payload: message,
         };
     },
 

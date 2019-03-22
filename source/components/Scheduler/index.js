@@ -20,7 +20,10 @@ const mapStateToProps = (state) => {
 
     return {
         tasks: state.tasks,
-        valueInputTask: state.ui.get('valueInputTask')
+        editingTaskId: state.ui.get("editingTaskId"),
+        checkedAllTasksCompleted: state.ui.get("checkedAllTasksCompleted"),
+        valueInputTask: state.ui.get("valueInputTask"),
+        prevMessage: state.ui.get('prevMessage')
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -29,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators({ ...tasksActions, ...uiActions }, dispatch),
     };
 };
+
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Scheduler extends Component {
@@ -39,11 +43,16 @@ export default class Scheduler extends Component {
         actions.fetchTasksAsync()
     };
 
+    componentDidUpdate = () => {
+        const { tasks, actions } = this.props;
+        actions.checkedAllTasks(tasks)
+    }
+    
+
     _createTaskAsync = (event) => {
         event.preventDefault();
         
-        const { valueInputTask, actions } = this.props;
-        
+        const { valueInputTask, actions } = this.props;        
 
         if (!valueInputTask) {
             return null;
@@ -57,22 +66,43 @@ export default class Scheduler extends Component {
         inputTask(event.target.value)
     };
 
+    _toggleAllTasksCompleted = () => {
+        const { tasks, actions, checkedAllTasksCompleted } = this.props;
+        
+        const completedTasks = tasks.map((task) => {
+            return task.set('completed', !checkedAllTasksCompleted);
+        });
+        
+        actions.updateTaskAsync(completedTasks);
+    }
+    
 
     render () {
-        const { valueInputTask, tasks, actions } = this.props;
+        const {
+          valueInputTask,          
+          checkedAllTasksCompleted,
+          tasks,
+          actions,
+          editingTaskId,
+          prevMessage,
+        } = this.props;
 
         const todoList = tasks.map((task) => {            
-            return (<Task
-                tasks = {tasks}
-                task = {task}
-                actions = {actions}
-                completed = { task.get('completed') }
-                favorite = { task.get('favorite') }
-                id = { task.get('id') }
-                key = { task.get('id') }
-                message = { task.get('message') }
-                { ...task }
-            />);
+            return (
+              <Task
+                prevMessage={prevMessage}
+                editingTaskId={editingTaskId} 
+                tasks={tasks}
+                task={task}
+                actions={actions}
+                completed={task.get("completed")}
+                favorite={task.get("favorite")}
+                id={task.get("id")}
+                key={task.get("id")}
+                message={task.get("message")}
+                {...task}
+              />
+            );
         });
 
         return (
@@ -101,7 +131,12 @@ export default class Scheduler extends Component {
                         </div>
                     </section>
                     <footer>
-                        <Checkbox checked color1 = '#363636' color2 = '#fff' />
+                        <Checkbox                             
+                            color1 = '#363636' 
+                            color2 = '#fff' 
+                            checked={checkedAllTasksCompleted}
+                            onClick={this._toggleAllTasksCompleted}
+                            />
                         <span className = { Styles.completeAllTasks }>
                             Все задачи выполнены
                         </span>

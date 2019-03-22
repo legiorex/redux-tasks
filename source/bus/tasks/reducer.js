@@ -21,6 +21,11 @@ export const tasksReducer = (state = initialState, action) => {
                 return task.get("id") !== action.payload;
             });
 
+        case types.EDIT_MESSAGE_TASK:
+            return state.update(action.payload.get('index'), (task) => {
+                return task.set('message', action.payload.get('message'));
+            });
+
         default:
             return state;
     }

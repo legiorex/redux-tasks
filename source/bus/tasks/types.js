@@ -4,7 +4,7 @@ export const types = {
     CREATE_TASK:          'CREATE_TASK',
     REMOVE_TASK:          'REMOVE_TASK',
     TOGGLE_FAVORITE_TASK: 'TOGGLE_FAVORITE_TASK',
-
+    EDIT_MESSAGE_TASK:    'EDIT_MESSAGE_TASK',
 
     // Async
     FETCH_TASKS_ASYNC: 'FETCH_TASKS_ASYNC',
