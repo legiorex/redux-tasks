@@ -1,5 +1,5 @@
 // Core
-import { Map, List, fromJS } from 'immutable';
+import { Map } from 'immutable';
 
 // Types
 import { types } from './types';
@@ -7,13 +7,11 @@ import { types } from './types';
 const initialState = Map({
     checkedAllTasksCompleted: false,
     isFetching:               false,
+    valueInputTask:           '',
+    newMessage:               '',
+    prevMessage:              '',
+    editingTaskId:            null, //или нул или строка id
 
-    valueInputTask: '',
-    newMessage:     '',
-    prevMessage:    '',
-
-    editingTaskId: null, //или нул или строка id
-    
 });
 
 export const uiReducer = (state = initialState, action) => {
@@ -46,7 +44,7 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.NEW_MESSAGE_TASK:
             return state.set('newMessage', action.payload);
-        
+
         case types.PREV_MESSAGE:
             return state.set('prevMessage', action.payload);
 

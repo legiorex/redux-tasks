@@ -41,13 +41,6 @@ export const uiActions = {
         };
     },
     
-
-    checkEditTask: (editingTask) => {
-        return {
-            type:    types.CHECK_EDIT_TASK,
-            payload: editingTask,
-        };
-    },
     startEditingTask: (idTask) => {
         return {
             type:    types.START_EDITING_TASK,
@@ -58,7 +51,7 @@ export const uiActions = {
         return {
             type: types.FINISH_EDITING_TASK,
         };
-    },    
+    },
 
     prevMessage: (message) => {
         return {
