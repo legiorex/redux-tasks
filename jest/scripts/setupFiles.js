@@ -1,5 +1,5 @@
 // Core
-import { Map, List } from "immutable";
+import { Map, fromJS } from "immutable";
 
 // Mocks
 import { LocalStorage } from './mocks/localStorage';
@@ -11,10 +11,10 @@ const token = 'TEST_TOKEN';
 const error = new Error(errorMessage);
 const taskID = 'TEST_ID';
 const message = 'TEST_MESSAGE';
-const editMessage = Map({
-    index: 0,
-    message,
-});
+const editMessage = {
+    index:   0,
+    message: 'updateMessage',
+};
 
 const tasks = [{
     id:        taskID,
@@ -25,6 +25,10 @@ const tasks = [{
     modified:  'TEST_MODIFIED',
 
 }];
+
+const tasksImmutable = fromJS([tasks, tasks]);
+
+
 
 const task = {
     id:        taskID,
@@ -67,6 +71,7 @@ const fetchResponseFail400 = {
 const url = 'https://www.url.com';
 
 global.__ = {
+    tasksImmutable,
     tasks,
     task,
     message,
@@ -80,7 +85,7 @@ global.__ = {
     fetchResponseSuccess,
     fetchResponseSuccess204,
     fetchResponseFail401,
-    fetchResponseFail400,    
+    fetchResponseFail400,
     url,
 };
 global.fetch = fetch;

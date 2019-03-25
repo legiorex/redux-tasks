@@ -2,10 +2,8 @@
 import { fromJS, Map } from "immutable";
 
 // Instruments
-import { types } from '../types';
 import { uiActions } from "../actions";
 import { uiReducer } from "../reducer";
-import { sortTasksByGroup } from '../../../instruments/helpers';
 
 const initialState = Map({
     checkedAllTasksCompleted: false,
@@ -47,10 +45,11 @@ describe('ui reducer', () => {
 
     test('should handler CHECK_ALL_TASKS action', () => {
         expect(
-            uiReducer(void 0, uiActions.checkedAllTasks(__.tasks))
-        ).toEqual(initialState.set('checkedAllTasksCompleted', __.tasks.every((task) => {
+            uiReducer(void 0, uiActions.checkedAllTasks(fromJS(__.tasks)))
+        ).toEqual(initialState.set('checkedAllTasksCompleted', fromJS(__.tasks).every((task) => {
             return task.get('completed');
         })));
+
     });
 
     test('should handler START_EDITING_TASK action', () => {
