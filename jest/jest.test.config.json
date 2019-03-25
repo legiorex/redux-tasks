@@ -11,7 +11,9 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
         "<rootDir>/source/bus/tasks/**/*.{js,jsx}",
-        "<rootDir>/source/bus/ui/**/*.{js,jsx}"        
+        "<rootDir>/source/bus/ui/**/*.{js,jsx}",        
+        "<rootDir>/source/init/**/*.{js,jsx}"
+                
     ],
     "modulePaths": [ "<rootDir>/source", "<rootDir>/node_modules" ],
     "moduleFileExtensions": [ "js", "json", "css" ],

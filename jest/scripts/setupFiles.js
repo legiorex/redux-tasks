@@ -5,7 +5,7 @@ import { Map, List } from "immutable";
 import { LocalStorage } from './mocks/localStorage';
 import { fetch } from './mocks/fetch';
 
-const successMesasge = 'TEST_SUCCESS_MESSAGE.';
+const successMessage = "TEST_SUCCESS_MESSAGE.";
 const errorMessage = 'TEST_ERROR_MESSAGE.';
 const token = 'TEST_TOKEN';
 const error = new Error(errorMessage);
@@ -16,7 +16,7 @@ const editMessage = Map({
     message,
 });
 
-const tasks = List(Map({
+const tasks = [{
     id:        taskID,
     message,
     completed: true,
@@ -24,12 +24,22 @@ const tasks = List(Map({
     created:   'TEST_CREATED',
     modified:  'TEST_MODIFIED',
 
-}));
+}];
 
-// const responseDataSuccess = {
-//     data:    userProfile,
-//     message: successMesasge,
-// };
+const task = {
+    id:        taskID,
+    message,
+    completed: true,
+    favorite:  false,
+    created:   'TEST_CREATED',
+    modified:  'TEST_MODIFIED',
+
+};
+
+const responseDataSuccess = {
+    data:    tasks,
+    message: successMessage,
+};
 
 const responseDataFail = {
     message: errorMessage,
@@ -37,6 +47,10 @@ const responseDataFail = {
 
 const fetchResponseSuccess = {
     status: 200,
+    json:   jest.fn(() => Promise.resolve(responseDataSuccess)),
+};
+const fetchResponseSuccess204 = {
+    status: 204,
     json:   jest.fn(() => Promise.resolve(responseDataSuccess)),
 };
 
@@ -54,17 +68,19 @@ const url = 'https://www.url.com';
 
 global.__ = {
     tasks,
+    task,
     message,
     taskID,
     errorMessage,
     token,
     error,
     editMessage,
-    // responseDataSuccess,
+    responseDataSuccess,
     responseDataFail,
     fetchResponseSuccess,
+    fetchResponseSuccess204,
     fetchResponseFail401,
-    fetchResponseFail400,
+    fetchResponseFail400,    
     url,
 };
 global.fetch = fetch;

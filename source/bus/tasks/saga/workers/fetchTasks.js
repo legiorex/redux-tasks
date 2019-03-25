@@ -12,7 +12,6 @@ export function* fetchTasks () {
 
         const response = yield apply(api, api.tasks.fetch);
         const { data: tasks, message } = yield apply(response, response.json);
-        
 
         if (response.status !== 200) {
             throw new Error(message);

@@ -46,7 +46,11 @@ describe('ui reducer', () => {
     });
 
     test('should handler CHECK_ALL_TASKS action', () => {
-        expect(uiActions.checkedAllTasks(__.tasks)).toMatchSnapshot();
+        expect(
+            uiReducer(void 0, uiActions.checkedAllTasks(__.tasks))
+        ).toEqual(initialState.set('checkedAllTasksCompleted', __.tasks.every((task) => {
+            return task.get('completed');
+        })));
     });
 
     test('should handler START_EDITING_TASK action', () => {

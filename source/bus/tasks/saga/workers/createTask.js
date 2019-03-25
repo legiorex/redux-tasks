@@ -12,9 +12,12 @@ export function* createTask ({ payload: newTaskMessage }) {
         const response = yield apply(api, api.tasks.createTask, [newTaskMessage]);
         const { data: task, message } = yield apply(response, response.json);
 
+        
+
         if (response.status !== 200) {
             throw new Error(message);
         }
+
         yield put(tasksActions.createTask(task));
 
     } catch (error) {

@@ -3,7 +3,7 @@
 exports[`ui actions emitError 1`] = `
 Object {
   "error": true,
-  "meta": null,
+  "meta": Object {},
   "payload": [Error: TEST_ERROR_MESSAGE.],
   "type": "EMIT_ERROR",
 }

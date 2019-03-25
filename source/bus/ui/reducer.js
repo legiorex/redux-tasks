@@ -30,11 +30,13 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.CHECK_ALL_TASKS:
 
-            const checked = action.payload.every((task) => {
-                return task.get('completed');
-            });
+            // const checked = action.payload.every((task) => {
+            //     return task.get('completed');
+            // });
 
-            return state.set('checkedAllTasksCompleted', checked);
+            return state.set('checkedAllTasksCompleted', action.payload.every((task) => {
+                return task.get('completed');
+            }));
 
         case types.START_EDITING_TASK:
             return state.set('editingTaskId', action.payload);

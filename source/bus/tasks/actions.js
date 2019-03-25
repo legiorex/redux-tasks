@@ -45,6 +45,7 @@ export const tasksActions = {
         };
 
     },
+
     createTaskAsync: (newTaskMessage) => {
         return {
             type:    types.CREATE_TASK_ASYNC,

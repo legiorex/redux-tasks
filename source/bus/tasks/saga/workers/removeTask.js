@@ -10,8 +10,8 @@ export function* removeTask ({ payload: taskId }) {
         yield put(uiActions.startFetching());
 
         const response = yield apply(api, api.tasks.removeTask, [taskId]);
-        
-        if (response.status !== 204) {
+
+        if (response.status !== 204) {            
             throw new Error();
         }
         yield put(tasksActions.removeTask(taskId));
