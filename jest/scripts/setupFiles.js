@@ -1,5 +1,5 @@
 // Core
-import { Map, fromJS } from "immutable";
+import { Map, fromJS, List } from "immutable";
 
 // Mocks
 import { LocalStorage } from './mocks/localStorage';
@@ -16,20 +16,6 @@ const editMessage = {
     message: 'updateMessage',
 };
 
-const tasks = [{
-    id:        taskID,
-    message,
-    completed: true,
-    favorite:  false,
-    created:   'TEST_CREATED',
-    modified:  'TEST_MODIFIED',
-
-}];
-
-const tasksImmutable = fromJS([tasks, tasks]);
-
-
-
 const task = {
     id:        taskID,
     message,
@@ -39,6 +25,10 @@ const task = {
     modified:  'TEST_MODIFIED',
 
 };
+
+const tasks = [task, task];
+
+const tasksImmutable = List([Map(task), Map(task)]);
 
 const responseDataSuccess = {
     data:    tasks,

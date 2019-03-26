@@ -147,7 +147,6 @@ export default class Task extends PureComponent {
                     />
                     <input
                         disabled
-                        // disabled = { editingTaskId !== id }
                         maxLength = { 50 }
                         ref = { this.taskInput }
                         type = 'text'

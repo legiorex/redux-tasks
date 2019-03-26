@@ -22,13 +22,7 @@ export const tasksReducer = (state = initialState, action) => {
             });
 
         case types.EDIT_MESSAGE_TASK:
-            // const test = state.filter((task) => {
-            //     return task.get('message') === action.payload.get('message');
-            // });
-
-            // return state.update(action.payload.get('index'), (task) => {
-            //     return test;
-            // });
+            
             return state.update(action.payload.get('index'), (task) => {
                 return task.set('message', action.payload.get('message'));
             });
